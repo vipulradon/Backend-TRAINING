@@ -8,12 +8,12 @@ router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
 
-router.post("/createUser", UserController.createUser  )
+router.post("/getBooksInYear", BookController.publishedYear  )
 
-router.get("/getUsersData", UserController.getUsersData)
-
+router.post("/getParticularBooks", BookController.particularBook)
+router.get("/getXINRBooks",BookController.getINRBooks)
 router.post("/createBook", BookController.createBook  )
-
-router.get("/getBooksData", BookController.getBooksData)
+router.get("/getRandomBooks",BookController.randomBooks)
+router.get("/bookList", BookController.getBooks)
 
 module.exports = router;
