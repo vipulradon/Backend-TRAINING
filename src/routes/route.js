@@ -8,7 +8,8 @@ const bookController= require("../controllers/bookController");
 router.post("/createAuthor",authorController.createAuthor);
 router.post("/createPublisher",publisherController.createPublisher);
 router.post("/createBook",bookController.createBook);
-router.get("/getallBooks",bookController.getallBooks)
+router.get("/getallBooks",bookController.getallBooks);
+router.put("/books",bookController.updateBooks)
 
 
 module.exports = router;
