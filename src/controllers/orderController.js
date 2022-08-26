@@ -14,9 +14,9 @@ if(data.userId && data.productId ){
  }else if (!validProduct){
     res.send({msg:"Please Confirm the ProductId"})
  }else{
-if(req.headers["isfreeappuser"]=="true"){
+if(req.isfreeappuser){
 req.body.amount= 0;
-req.body.isFreeAppUser= req.headers["isfreeappuser"];
+req.body.isFreeAppUser= req.isfreeappuser;
 let savedOrder= await orderModel.create(req.body);
 res.send({msg:savedOrder,status:"Enjoy Your Free Order"})
 }else{
@@ -26,10 +26,11 @@ res.send({msg:savedOrder,status:"Enjoy Your Free Order"})
         res.send({msg:"Insufficient Balance For this Order"})
     }else{
         let userWithUpdatedBalance= await userModel.findOneAndUpdate({_id:req.body.userId},{$inc:{balance:-product.price}});
+        let balanceLeft= userWithUpdatedBalance.balance;
         req.body.amount= product.price;
-        req.body.isFreeAppUser= req.headers["isfreeappuser"];
+        req.body.isFreeAppUser= req.isfreeappuser;
         let savedOrder= await orderModel.create(req.body);
-        res.send({msg:savedOrder,Status:"Congratulations!! Your Order Placed SuccessFully"})
+        res.send({msg:savedOrder,Status:"Congratulations!! Your Order Placed SuccessFully",balanceLeft})
 
     }
 }
