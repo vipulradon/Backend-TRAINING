@@ -3,7 +3,8 @@ const mid1= function(req,res,next){
         if(req.headers["isfreeappuser"]==="true"){
             req.isfreeappuser=Boolean(req.headers["isfreeappuser"])
         }else{
-            req.isfreeappuser=false;
+            req.headers["isfreeappuser"]=false
+            req.isfreeappuser=req.headers["isfreeappuser"]
         }
     
         next();
