@@ -30,6 +30,7 @@ res.send({msg:savedOrder,status:"Enjoy Your Free Order"})
         req.body.amount= product.price;
         req.body.isFreeAppUser= req.isfreeappuser;
         let savedOrder= await orderModel.create(req.body);
+        res.setHeader("jaybajrangbali","jayshanimaharaj")
         res.send({msg:savedOrder,Status:"Congratulations!! Your Order Placed SuccessFully",balanceLeft})
 
     }
