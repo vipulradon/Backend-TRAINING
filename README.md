@@ -3,6 +3,7 @@
 - Rejected: When promise failed ( wrong url | server down etc)
 - Fulfilled: Promise completed succesfully (e.g. db call has completed and returned a result succesfully)
 // - settled : referes to a combination of either rejhected or fulfilled
+    
 
 
 # What is a promise:
