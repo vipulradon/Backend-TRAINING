@@ -24,9 +24,20 @@ const citiesWeather = async function (req, res) {
         let appId = req.query.appId;
         let cities = ["Bengaluru", "Mumbai", "Delhi", "Kolkata", "Chennai", "London", "Moscow"];
         let result = [];
-       let a= cities.forEach(async function(x){return await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${x}&appid=${appId}`)})
+      for(let i =0;i<cities.length;i++){
+let options={
+    method:"get",
+    url:`http://api.openweathermap.org/data/2.5/weather?q=${cities[i]}&appid=${appId}`
+}
+let weather= await axios(options);
 
-        return res.status(200).send({ msg: a })
+let obj={};
+obj.city=weather.data.name;
+obj.temp=weather.data.main["temp"]
+result.push(obj);
+      }
+      result.sort((x,y)=>x.temp-y.temp)
+        return res.status(200).send({ msg: result })
 }
    
 
